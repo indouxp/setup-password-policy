@@ -1,0 +1,28 @@
+---
+- hosts: all
+  gather_facts: false
+  become: true
+  remote_user: indou
+  tasks:
+    - name: パスワードの複雑さ
+      pamd:
+        name: system-auth
+        type: auth
+        control: required
+        module_path: pam_tally2.so
+        new_type: auth
+        new_control: required
+        new_module_path: pam_cracklib.so
+        module_arguments: dcredit=-2 ucredit=-2 lcredit=-2 ocredit=-1
+        state: after
+    - name: パスワードの複雑さ
+      pamd:
+        name: password-auth
+        type: auth
+        control: required
+        module_path: pam_tally2.so
+        new_type: auth
+        new_control: required
+        new_module_path: pam_cracklib.so
+        module_arguments: dcredit=-2 ucredit=-2 lcredit=-2 ocredit=-1
+        state: after

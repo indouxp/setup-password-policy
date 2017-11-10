@@ -1,0 +1,6 @@
+[c73]
+192.168.0.76
+
+[all:vars]
+ansible_ssh_user=indou
+ansible_ssh_private_key_file=/home/indou/.ssh/id_rsa
